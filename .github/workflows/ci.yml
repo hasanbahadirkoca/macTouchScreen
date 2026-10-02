@@ -1,0 +1,18 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Test
+        run: swift test
+
+      - name: Build app
+        run: scripts/bundle.sh 0.0.0-ci
